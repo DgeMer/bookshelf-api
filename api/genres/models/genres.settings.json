@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "genres",
   "info": {
-    "name": "Genres",
+    "name": "Genre",
     "description": ""
   },
   "options": {
@@ -17,8 +17,8 @@
       "unique": true
     },
     "books": {
-      "via": "genres",
-      "collection": "book"
+      "collection": "book",
+      "via": "genres"
     }
   }
 }

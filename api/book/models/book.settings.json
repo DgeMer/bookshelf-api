@@ -42,14 +42,18 @@
       "type": "richtext"
     },
     "author": {
-      "unique": true,
       "model": "author",
       "via": "books"
     },
     "genres": {
-      "collection": "genres",
       "via": "books",
+      "collection": "genres",
       "dominant": true
+    },
+    "user": {
+      "via": "books",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }

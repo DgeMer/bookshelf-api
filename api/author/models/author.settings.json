@@ -21,6 +21,11 @@
     "books": {
       "via": "author",
       "collection": "book"
+    },
+    "user": {
+      "via": "authors",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }
