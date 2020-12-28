@@ -7,6 +7,13 @@ const { sanitizeEntity } = require('strapi-utils');
  */
 
 module.exports = {
+  async create(ctx) {
+    let entity;
+    ctx.request.body.user = ctx.state.user.id;
+    entity = await strapi.services.book.create(ctx.request.body);
+    return sanitizeEntity(entity, { model: strapi.models.book });
+  },
+
   async find(ctx) {
     let entities = await strapi.services.book.find({
       'user.id': ctx.state.user.id,
