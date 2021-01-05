@@ -17,6 +17,7 @@ module.exports = {
   async find(ctx) {
     let entities = await strapi.services.author.find({
       'user.id': ctx.state.user.id,
+      _sort: ctx.query._sort || 'lastName:ASC'
     });
 
     return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.author }));
