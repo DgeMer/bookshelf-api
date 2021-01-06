@@ -7,10 +7,22 @@ const { sanitizeEntity } = require('strapi-utils');
  */
 
 module.exports = {
+  async count(ctx) {
+    let entity = await strapi.services.book
+      .count({
+        'user.id': ctx.state.user.id,
+        isReading: ctx.query.isReading,
+        isRead: ctx.query.isRead,
+        isNotfinished: ctx.query.isNotfinished,
+        isNotActual: ctx.query.isNotActual,
+        isPlanned: ctx.query.isPlanned,
+      });
+    return sanitizeEntity(entity, { model: strapi.models.book });
+  },
+
   async create(ctx) {
-    let entity;
     ctx.request.body.user = ctx.state.user.id;
-    entity = await strapi.services.book.create(ctx.request.body);
+    let entity = await strapi.services.book.create(ctx.request.body);
     return sanitizeEntity(entity, { model: strapi.models.book });
   },
 
